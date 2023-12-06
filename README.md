@@ -16,7 +16,7 @@ When using Twilio, a bridged call occurs when an incoming call leg (also known a
 
 ## Usage
 
-Once the virtual environment has been activated, start the Flask app by running `python app.py`. You will also need to start an Ngrok session by running `ngrok http 5000` if your host does not have a public IP or has a NAT port forward from the internet firewall.
+Once the virtual environment has been activated, start the Flask app by running `python app.py`. You will also need to start an Ngrok session by running `ngrok http 5000 if your host does not have a public IP.
 
 Once started, update the Twilio phone number, SIP Domain or TwiML App to the Ngrok URL or public IP/hostname. When a call comes in to Twilio, the Flask app will return standard TwiML to `<Dial>` the `<Number>` from the `.env` file. This will be a regular bridged call. To convert the bridged call to a conference, run `python convert.py`. The conversion script makes the assumption that there is only 1 active bridged call (with 2 call legs/SIDs) and as such, converts the latest call (the child call) to `<Dial>` a `<Conference>`. The conference name will be the parent Call SID (since SIDs are unique). The `action` URL will also return TwiML instructions to the parent call to join the same conference.
 
